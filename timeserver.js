@@ -6,8 +6,8 @@ var http = require("http")
 
 var app = express();
 
-app.get('/test', function(req, resp){
+app.post('/test', function(req, resp){
     resp.send("This appears")
 })
 
-http.createse
+app.listen(process.env.PORT)
