@@ -12,10 +12,22 @@ app.get("/", function (req, resp) {
 app.get("/TSM", function(req, resp){
   resp.sendFile(__dirname + '/views/tsm.html')
 })
+
 app.get("/RHPM", function(req, resp){
   resp.sendFile(__dirname + '/views/rhpm.html')
 })
 
+app.get("/USM", function(req, resp){
+  resp.sendFile(__dirname + '/views/usm.html')
+})
+
+app.get("/ISA", function(req, resp){
+  resp.sendFile(__dirname + '/views/isa.html')
+})
+
+app.get("/FMM", function(req, resp){
+  resp.sendFile(__dirname + '/views/fmm.html')
+})
 
 app.get('/test',function(req,res){
     var data = req.params;
