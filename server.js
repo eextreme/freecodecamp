@@ -5,10 +5,14 @@ var http = require("http")
 var app = express();
 app.set("view", 'view/index.html')
 
-app.get('/:time',function(req,res){
+app.get("/", function (request, response) {
+  response.sendFile(__dirname + '/views/index.html');
+});
+
+app.get('/test',function(req,res){
     var data = req.params;
     // console.log(data);
-    res.send(req)
+    res.send("<h1>here is your link</h1>")
 });
 app.use('/',express.static(__dirname+'/public'));
 
