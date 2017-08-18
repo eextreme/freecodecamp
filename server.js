@@ -5,9 +5,17 @@ var http = require("http")
 var app = express();
 app.set("view", 'view/index.html')
 
-app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+app.get("/", function (req, resp) {
+  resp.sendFile(__dirname + '/views/index.html');
 });
+
+app.get("/TSM", function(req, resp){
+  resp.sendFile(__dirname + '/views/tsm.html')
+})
+app.get("/RHPM", function(req, resp){
+  resp.sendFile(__dirname + '/views/rhpm.html')
+})
+
 
 app.get('/test',function(req,res){
     var data = req.params;
