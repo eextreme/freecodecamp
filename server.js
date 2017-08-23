@@ -36,9 +36,8 @@ app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
 
-app.get('/USM/:input', function(req, resp){
-  //var test = getUrl(req.params);
-  resp.JSON(circJ.stringify(req));
+app.get('/USM/:input', function (req, resp){
+  resp.send(req.params.input)
 })
 //Url Shortener Microservice
 
