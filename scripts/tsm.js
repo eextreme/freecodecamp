@@ -18,11 +18,13 @@ function getTime(time){
   else
     {
       console.log("Natural Language Timestamp Detected")
-      var parsed = chrono.parseDate(time)
+      var parsed = chrono.parse(time)[0].start.date()
+
       
       if (parsed){
-        unix = parsed.getTime()
+        unix = parsed.getTime()/1000
         date = ref[parsed.getMonth()]+" "+parsed.getDay()+", "+parsed.getFullYear()
+        //date = parsed
       }
       else
         {
