@@ -1,21 +1,22 @@
 function createShortURL(fullUrl){
   var MongoClient = require('mongodb').MongoClient
-  var db_url = "ds149763.mlab.com:49763/eextreme_db"
+  var db_url = "mongodb://<tester>:<tester>@ds149763.mlab.com:49763/eextreme_db"
   
   MongoClient.connect(db_url,function(db, err){
-    if (err) throw err
+    if (err) throw "connection failed"
+    
     var rand = Math.floor((Math.random() * 100000) + 1);
     
-    var collection = db.collection("urls")
+    var urlList = db.collection('urls')
     var query = {shortKey: fullUrl}
     
-    var doc = collection.findOne(query)
+    var doc = urlList.findOne(query)
     
-    if (doc) return doc.fullurl
+    if (doc) return "The short url takes you to: "+ doc.fullurl
     else{
       var entry = {shortKey: rand, fullurl: fullUrl}
-      collection.insertOne(entry)
-      return rand;
+      urlList.insertOne(entry)
+      return "Your short url is: https://substantial-screw.glitch.me/USM/" + rand;
     }
   })
 }
