@@ -3,6 +3,7 @@ var express = require("express")
 var http = require("http")
 var time = require("./scripts/tsm.js")
 var getInfo = require("./scripts/rhpm.js")
+var circJ = require("circular-json")
 
 var app = express();
 //app.set("view", 'view/index.html')
@@ -21,9 +22,8 @@ app.get('/TSM/:input', function(req, resp){
 
 app.get('/RHPM', function(req, resp){
   var res = getInfo(req)
-  console.log(req)
   app.set('view engine', 'pug')
-  resp.render('rhpm', { ipaddress: 'Implementing', lang: 'Implementing', software: "Implementing", data: req.headers })
+  resp.render('rhpm', { ipaddress: 'Implementing', lang: 'Implementing', software: "Implementing", data: circJ.stringify(req)})
 })
 
 app.get('/USM', function(req, resp){
