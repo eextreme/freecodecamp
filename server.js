@@ -2,6 +2,7 @@ var fs = require('fs')
 var express = require("express")
 var http = require("http")
 var time = require("./scripts/tsm.js")
+var getInfo = require("./scripts/rhpm.js")
 
 var app = express();
 //app.set("view", 'view/index.html')
@@ -19,7 +20,8 @@ app.get('/TSM/:input', function(req, resp){
 })
 
 app.get('/RHPM', function(req, resp){
-  resp.sendFile(__dirname + '/views/rhpm.html')
+  var res = getInfo(req)
+  resp.render('rhpm', { ipaddress: 'Implementing', lang: 'Implementing', software: "Imple" })
 })
 
 app.get('/USM', function(req, resp){
