@@ -3,6 +3,7 @@ var express = require("express")
 var http = require("http")
 var time = require("./scripts/tsm.js")
 var getInfo = require("./scripts/rhpm.js")
+var getUrl = require("./scripts/usm.js")
 var circJ = require("circular-json")
 
 var app = express();
@@ -36,7 +37,8 @@ app.get('/USM', function(req, resp){
 })
 
 app.get('/USM/:input', function(req, resp){
-  resp.send("USM result: " + req.params)
+  //var test = getUrl(req.params);
+  resp.JSON(circJ.stringify(req));
 })
 //Url Shortener Microservice
 
