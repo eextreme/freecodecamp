@@ -1,11 +1,14 @@
 doctype html
 html(lang="en")
   head
-    title= Request Header Parser
+    title Request Header Parser Microservice
     script(type='text/javascript').
   body
-    h1 "Your IP Information is"
-      p="IP Address" + ipaddress
-      p="Language" + lang
-      p="Software" + software
+    h1 Your IP Information
+    h2
+      p="IP Address: " + ipaddress
+      p="Language: " + lang
+      p="Software: " + software
+    h2
+      p="Data: "+ data
       

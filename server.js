@@ -21,7 +21,9 @@ app.get('/TSM/:input', function(req, resp){
 
 app.get('/RHPM', function(req, resp){
   var res = getInfo(req)
-  resp.render('rhpm', { ipaddress: 'Implementing', lang: 'Implementing', software: "Imple" })
+  console.log(req)
+  app.set('view engine', 'pug')
+  resp.render('rhpm', { ipaddress: 'Implementing', lang: 'Implementing', software: "Implementing", data: req.headers })
 })
 
 app.get('/USM', function(req, resp){
