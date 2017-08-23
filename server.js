@@ -23,7 +23,7 @@ app.get('/TSM/:input', function(req, resp){
 app.get('/RHPM', function(req, resp){
   var res = getInfo(req)
   app.set('view engine', 'pug')
-  resp.render('rhpm', { ipaddress: res["ip"], lang: res["lang"], software: res["soft"], data: res})
+  resp.render('rhpm', { ipaddress: res["ip"], lang: res["lang"], software: res["soft"], data: JSON.stringify(res)})
 })
 
 app.get('/USM', function(req, resp){
