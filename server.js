@@ -1,6 +1,7 @@
 var fs = require('fs')
 var express = require("express")
 var http = require("http")
+var time = require("./scripts/tsm.js")
 
 var app = express();
 //app.set("view", 'view/index.html')
@@ -14,7 +15,8 @@ app.get('/TSM', function(req, resp){
 })
 
 app.get('/TSM/:input', function(req, resp){
-  resp.send("Timestamp result: " + req.params)
+  var res = time()
+  resp.json(time(req.params.input))
 })
 
 app.get('/RHPM', function(req, resp){
