@@ -8,13 +8,13 @@ function createShortURL(fullUrl){
     var rand = Math.floor((Math.random() * 100000) + 1);
     
     var urlList = db.collection('urls')
-    var query = {shortKey: fullUrl}
+    var query = {shortKey: Number.parseInt(fullUrl)}
     
     var doc = urlList.findOne(query)
-    console.log(doc)
+    console.log(JSON.stringify(doc))
     
-    if (doc.fullU) {
-      console.log("shorturl found")
+    if (doc['fullurl']) {
+      console.log("shorturl found: "+ doc.fullurl)
       return "The short url takes you to: "+ doc.fullurl
     }
     else{
