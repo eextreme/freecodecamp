@@ -22,10 +22,6 @@ app.get('/RHPM', function(req, resp){
   resp.sendFile(__dirname + '/views/rhpm.html')
 })
 
-app.get('/RHPM/:input', function(req, resp){
-  resp.send("RHPM result: " + req.params)
-})
-
 app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
