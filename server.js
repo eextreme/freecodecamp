@@ -12,6 +12,7 @@ app.get('/', function (req, resp) {
   resp.sendFile(__dirname + '/views/index.html');
 });
 
+//Timestamp microservice
 app.get('/TSM', function(req, resp){
   resp.sendFile(__dirname + '/views/tsm.html')
 })
@@ -19,13 +20,17 @@ app.get('/TSM', function(req, resp){
 app.get('/TSM/:input', function(req, resp){
   resp.json(time(req.params.input))
 })
+//Timestamp microservice
 
+//Reader Header Parser Microservice
 app.get('/RHPM', function(req, resp){
   var res = getInfo(req)
   app.set('view engine', 'pug')
   resp.render('rhpm', { ipaddress: res["ip"], lang: res["lang"], software: res["soft"], data: JSON.stringify(res)})
 })
+//Reader Header Parser Microservice
 
+//Url Shortener Microservice
 app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
@@ -33,6 +38,7 @@ app.get('/USM', function(req, resp){
 app.get('/USM/:input', function(req, resp){
   resp.send("USM result: " + req.params)
 })
+//Url Shortener Microservice
 
 app.get('/ISA', function(req, resp){
   resp.sendFile(__dirname + '/views/isa.html')
