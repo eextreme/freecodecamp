@@ -60,5 +60,4 @@ app.get('/FMM/:input', function(req, resp){
 app.use('/',express.static(__dirname+'/public'));
 
 app.listen(process.env.PORT,function(){
-    console.log('Everything is OK');
 });
