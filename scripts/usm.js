@@ -1,4 +1,4 @@
-function createShortUrl(fullUrl){
+function createShortURL(fullUrl){
   var MongoClient = require('mongodb').MongoClient
   var db_url = "ds149763.mlab.com:49763/eextreme_db"
   
@@ -15,9 +15,9 @@ function createShortUrl(fullUrl){
     else{
       var entry = {shortKey: rand, fullurl: fullUrl}
       collection.insertOne(entry)
-      return rand
+      return rand;
     }
   })
 }
 
-module.export = createShortUrl;
+module.exports = createShortURL;
