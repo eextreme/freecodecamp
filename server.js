@@ -15,7 +15,6 @@ app.get('/TSM', function(req, resp){
 })
 
 app.get('/TSM/:input', function(req, resp){
-  var res = time()
   resp.json(time(req.params.input))
 })
 
