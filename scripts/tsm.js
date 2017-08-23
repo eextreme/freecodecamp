@@ -1,6 +1,6 @@
 function getTime(time){
   console.log("Your input is: ")
-  var query = /^[0-9]/i
+  var query = /^[0-9]*?/i
   var chrono = require('chrono-node')
   var unix;
   var date;
@@ -11,8 +11,9 @@ function getTime(time){
     {
       console.log("UNIX Timestamp Detected")
       var parsed = new Date(time*1000)
+      
       unix = time;
-      date = ref[parsed.getMonth()]+" "+parsed.getDay()+", "+parsed.getFullYear()
+      date = ref[parsed.getMonth()]+" "+parsed.getDate()+", "+parsed.getFullYear()
       
     }
   else
@@ -22,8 +23,8 @@ function getTime(time){
 
       
       if (parsed){
-        unix = parsed.getTime()/1000
-        date = ref[parsed.getMonth()]+" "+parsed.getDay()+", "+parsed.getFullYear()
+        unix = Date.parse(parsed)/1000
+        date = ref[parsed.getMonth()]+" "+parsed.getDate()+", "+parsed.getFullYear()
         //date = parsed
       }
       else
