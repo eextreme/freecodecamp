@@ -38,7 +38,7 @@ app.get('/USM', function(req, resp){
 
 app.get('/USM/:input', function (req, resp){
   var res = getUrl(req.params.input)
-  resp.send("Results are: " + res)
+  resp.send("Results are: " + JSON.stringify(res))
 })
 //Url Shortener Microservice
 
