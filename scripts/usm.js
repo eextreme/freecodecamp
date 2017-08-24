@@ -9,24 +9,18 @@ function createShortURL(fullUrl){
     
     var urlList = db.collection('urls')
     var query = {shortKey: Number.parseInt(fullUrl)}
-    var doc = urlList.findOne(query)
-     
-     if (doc['fullurl']!="") {
-      console.log("shorturl found: "+ doc.fullurl)
-      return "The short url takes you to: "+ doc.fullurl
-    }
-    else{
-      console.log("shorturl not found")
-      var entry = {shortKey: rand, fullurl: fullUrl}
-      urlList.insertOne(entry)
-      return "Your short url is: https://substantial-screw.glitch.me/USM/" + rand;
+    var doc = urlList.findOne(query, function(err, data){
+      if (data){
+        console.log(fullUrl + " " + data['fullurl'])
+        return "The code " + fullUrl + " links to " + data['fullurl']
       }
+      else{
+        var entry = {shortKey: rand, fullurl:fullUrl}
+        urlList.insertOne(entry)
+      console.log(fullUrl+" has been added")
+      return "The code"
+    })
   })
 }
-
-function check(doc){
-  
-}
-
 
 module.exports = createShortURL;
