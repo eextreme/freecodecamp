@@ -10,9 +10,11 @@ function createShortURL(fullUrl){
     var urlList = db.collection('urls')
     var query = {shortKey: Number.parseInt(fullUrl)}
     
-    var doc = urlList.findOne(query)
+    urlList.findOne(query, function(data, err){
+      console.log(JSON.stringify(doc)  
+    })
     
-    console.log(JSON.stringify(doc))
+    
     
     if (doc['fullurl']) {
       console.log("shorturl found: "+ doc.fullurl)
@@ -27,9 +29,7 @@ function createShortURL(fullUrl){
   })
 }
 
-function connect(){
-  
-}
+function check()
 
 
 module.exports = createShortURL;
