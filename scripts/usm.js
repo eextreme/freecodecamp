@@ -21,14 +21,10 @@ function createShortURL(fullUrl, callback){
         urlList.insertOne(entry)
         console.log(fullUrl+" has been added")
         var results={type: "created", shortUrl: "https://substantial-screw.glitch.me/USM/"+rand}
-        justReturn(results)
+        callback(results)
       }
     })
   })  
-}
-
-function justReturn(val){
-  return val;
 }
 
 module.exports = createShortURL
