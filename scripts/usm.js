@@ -11,6 +11,7 @@ function createShortURL(fullUrl){
     var query = {shortKey: Number.parseInt(fullUrl)}
     
     var doc = urlList.findOne(query)
+    
     console.log(JSON.stringify(doc))
     
     if (doc['fullurl']) {
@@ -25,5 +26,10 @@ function createShortURL(fullUrl){
     }
   })
 }
+
+function connect(){
+  
+}
+
 
 module.exports = createShortURL;
