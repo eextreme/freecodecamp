@@ -43,10 +43,11 @@ app.get('/USM/:input', function (req, resp){
         resp.redirect(res['link'])
         break;
       case "created":
-        resp.send(JSON.stringify(res))
+        resp.send(res['shortUrl'])
         break;
       default:
         resp.send(JSON.stringify(res))
+        break;
     }    
   })
 })
