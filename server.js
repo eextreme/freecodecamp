@@ -54,7 +54,7 @@ app.get('/USM/*', function (req, resp){
         resp.redirect(res['link'])
         break;
       case "created":
-        resp.send(res['shortUrl'])
+        resp.send(res)
         break;
       case "invalid":  
         resp.send("<h2>invalid website link.</h2><a href="+backUrl+">Click here to go back</a>")

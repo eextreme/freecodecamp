@@ -6,7 +6,7 @@ function createShortURL(fullUrl, callback){
   
   if (!check.test(fullUrl)){
     var results = {type: "invalid", link: fullUrl}
-    callback(results);
+    return callback(results);
   }
   
   MongoClient.connect(db_url, function(err, db){
@@ -21,14 +21,14 @@ function createShortURL(fullUrl, callback){
       if (data){
         console.log(fullUrl + " " + data['fullurl'])
         var results={type: "redir", link: data['fullurl']}
-        callback(results)
+        return callback(results)
       }
       else{
         var entry = {shortKey: rand, fullurl:fullUrl}
         urlList.insertOne(entry)
         console.log(fullUrl+" has been added")
-        var results={type: "created", shortUrl: "https://substantial-screw.glitch.me/USM/"+rand}
-        callback(results)
+        var results={type: "created", shortUrl: "https://substantial-screw.glitch.me/USM/"+rand, originalUrl:fullUrl}
+        return callback(results)
       }
     })
   })  
