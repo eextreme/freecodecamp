@@ -40,11 +40,9 @@ app.get('/USM', function(req, resp){
 })
 
 app.get('/USM/:input*', function (req, resp){
-  console.log(req.query)
-  getUrl(req.query, function(res){
+  getUrl(req.params.input, function(res){
     switch (res['type']){
       case "redir":
-        res.contentType('application/json');
         var data = JSON.stringify(res['link'])
         res.header('Content-Length', data.length);
         res.send(data);
