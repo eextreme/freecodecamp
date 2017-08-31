@@ -1,4 +1,5 @@
 var fs = require('fs')
+var url = require('url')
 var express = require("express")
 var bp = require('body-parser')
 var http = require("http")
@@ -10,7 +11,12 @@ var getUrl = require("./scripts/usm.js")
 var app = express();
 //app.set("view", 'view/index.html')
 
-//app.set('strict routing', true)
+app.options("/*", function(req, res, next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.send(200);
+});
 
 app.get('/', function (req, resp) {
   resp.sendFile(__dirname + '/views/index.html');
@@ -39,7 +45,7 @@ app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
 
-app.post('/USM/:input', function (req, resp){
+app.get('/USM/web=*', function (req, resp){
   console.log(req.query)
   getUrl(req.params.input, function(res){
     switch (res['type']){
