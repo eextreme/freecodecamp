@@ -10,7 +10,7 @@ var getUrl = require("./scripts/usm.js")
 var app = express();
 //app.set("view", 'view/index.html')
 
-app.set('strict routing', true)
+//app.set('strict routing', true)
 
 app.get('/', function (req, resp) {
   resp.sendFile(__dirname + '/views/index.html');
@@ -39,13 +39,12 @@ app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
 
-app.get('/USM/:input*', function (req, resp){
+app.post('/USM/:input', function (req, resp){
+  console.log(req.query)
   getUrl(req.params.input, function(res){
     switch (res['type']){
       case "redir":
-        var data = JSON.stringify(res['link'])
-        res.header('Content-Length', data.length);
-        res.send(data);
+        resp.redirect(res['link'])
         break;
       case "created":
         resp.send(res['shortUrl'])
