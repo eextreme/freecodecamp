@@ -40,13 +40,13 @@ app.get('/USM/:input', function (req, resp){
   getUrl(req.params.input, function(res){
     switch (res['type']){
       case "redir":
-        resp.redirect(res['link'])
+        resp.send({redirect:res['link']})
         break;
       case "created":
         resp.send(res['shortUrl'])
         break;
       case "invalid":
-        resp.send("invalid website link")
+        resp.send("<h2>invalid website link</h2>")
         break
       default:
         resp.send(JSON.stringify(res))

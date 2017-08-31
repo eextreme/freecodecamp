@@ -2,12 +2,13 @@ function createShortURL(fullUrl, callback){
   var MongoClient = require('mongodb').MongoClient
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   
-  var check = /http:\/\/www\..*\..*$/
+  var ch1 = /http:\/\/www\..*\..*$/
+  var ch2 = /https:\/\/www\..*\..*$/
+  var ch3 = /[0-9]*/
   
-  if (!fullUrl.match(check)){
+  if (!fullUrl.match(ch1) && !fullUrl.match(ch2) && !fullUrl.match(ch3)){
     var results = {type: "invalid", link: fullUrl}
-    callback("invalid");
-    
+    callback(results);
   }
   
   MongoClient.connect(db_url, function(err, db){
