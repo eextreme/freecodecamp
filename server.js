@@ -45,7 +45,7 @@ app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
 
-app.get('/USM/(:input)*', function (req, resp){
+app.get('/USM/encodeURIComponent(:input)', function (req, resp){
   console.log(req.query)
   getUrl(req.params.input, function(res){
     switch (res['type']){
