@@ -71,9 +71,16 @@ app.get('/ISA', function(req, resp){
   resp.sendFile(__dirname + '/views/isa.html')
 })
 
-app.get('/ISA/:input', function(req, resp){
-  resp.send("ISA result: " + req.params)
+app.get('/ISA/imagesearch/*', function(req, resp){
+  var data = getSearchResults(req.params[0])
+  resp.send("ISA Results: " + req.params)
 })
+
+app.get('/ISA/searchhistory/', function(req, resp){
+  var data = getSearchHistory()
+  resp.send("ISA History")
+})
+
 
 app.get('/FMM', function(req, resp){
   resp.sendFile(__dirname + '/views/fmm.html')
