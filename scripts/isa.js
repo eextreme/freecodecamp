@@ -2,15 +2,11 @@ var http
 
 function getSearchResults(input){
   var http = require('http');
+  var site = "https://www.google.ca/search?q="+input+"&dcr=0&source=lnms&tbm=isch";
 
 //The url we want is `www.nodejitsu.com:1337/`
 var options = {
-  host: 'image.google.com',
-  path: '/',
-  //since we are listening on a custom port, we need to specify it by hand
-  port: '80',
-  //This is what changes the request to a POST request
-  method: 'POST'
+  host: site,
 };
 
 var callback = function(response) {
