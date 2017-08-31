@@ -10,11 +10,6 @@ var getUrl = require("./scripts/usm.js")
 var app = express();
 //app.set("view", 'view/index.html')
 
-app.use(bp.json() );       // to support JSON-encoded bodies
-app.use(bp.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
-
 app.get('/', function (req, resp) {
   resp.sendFile(__dirname + '/views/index.html');
 });
@@ -42,15 +37,14 @@ app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
 
-app.post('/USM/new', function (req, resp){
-  var text = req.body
-  getUrl(text, function(res){
+app.get('/USM/:input', function (req, resp){
+  getUrl(req.params.input, function(res){
     switch (res['type']){
       case "redir":
         res.contentType('application/json');
         var data = JSON.stringify(res['link'])
         res.header('Content-Length', data.length);
-        res.end(data);
+        res.send(data);
         break;
       case "created":
         resp.send(res['shortUrl'])
