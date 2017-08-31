@@ -39,7 +39,7 @@ app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
 
-app.get('/USM/:input', function (req, resp){
+app.get('/USM/:input*', function (req, resp){
   console.log(req.query)
   getUrl(req.query, function(res){
     switch (res['type']){
