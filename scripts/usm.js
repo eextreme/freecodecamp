@@ -2,6 +2,14 @@ function createShortURL(fullUrl, callback){
   var MongoClient = require('mongodb').MongoClient
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   
+  var check = /http:\/\/www\..*\..*$/
+  
+  if (!fullUrl.match(check)){
+    var results = {type: "invalid", link: fullUrl}
+    callback("invalid");
+    
+  }
+  
   MongoClient.connect(db_url, function(err, db){
     if (err) throw "connection failed"
 
