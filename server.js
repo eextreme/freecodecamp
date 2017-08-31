@@ -46,8 +46,9 @@ app.get('/USM', function(req, resp){
 })
 
 app.get('/USM/*', function (req, resp){
-  console.log(req.query)
-  getUrl(req.params.input, function(res){
+  var backURL=req.header('Referer') || '/';
+  //console.log(req)
+  getUrl(req.params[0], function(res){
     switch (res['type']){
       case "redir":
         resp.redirect(res['link'])
@@ -55,8 +56,9 @@ app.get('/USM/*', function (req, resp){
       case "created":
         resp.send(res['shortUrl'])
         break;
-      case "invalid":
-        resp.send("<h2>invalid website link</h2>")
+      case "invalid":  
+        resp.send("<h2>invalid website link. Redirecting...</h2>")
+        resp.redirect(backURL)
         break
       default:
         resp.send(JSON.stringify(res))

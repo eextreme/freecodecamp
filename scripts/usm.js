@@ -2,7 +2,7 @@ function createShortURL(fullUrl, callback){
   var MongoClient = require('mongodb').MongoClient
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   
-  var check = /[0-9]*$|(http:|https:)\/\/www\..*\..*$/
+  var check = /(^[0-9]*$)|(^http:|^https:)\/\/www\..*\..*$/
   
   if (!check.test(fullUrl)){
     var results = {type: "invalid", link: fullUrl}
