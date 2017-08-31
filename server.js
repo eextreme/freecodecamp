@@ -1,5 +1,6 @@
 var fs = require('fs')
 var express = require("express")
+var bp = require('body-parser')
 var http = require("http")
 var time = require("./scripts/tsm.js")
 var getInfo = require("./scripts/rhpm.js")
@@ -8,6 +9,11 @@ var getUrl = require("./scripts/usm.js")
 
 var app = express();
 //app.set("view", 'view/index.html')
+
+app.use(bp.json() );       // to support JSON-encoded bodies
+app.use(bp.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 app.get('/', function (req, resp) {
   resp.sendFile(__dirname + '/views/index.html');
@@ -36,11 +42,15 @@ app.get('/USM', function(req, resp){
   resp.sendFile(__dirname + '/views/usm.html')
 })
 
-app.get('/USM/:input', function (req, resp){
-  getUrl(req.params.input, function(res){
+app.post('/USM/new', function (req, resp){
+  var text = req.body
+  getUrl(text, function(res){
     switch (res['type']){
       case "redir":
-        resp.send({redirect:res['link']})
+        res.contentType('application/json');
+        var data = JSON.stringify(res['link'])
+        res.header('Content-Length', data.length);
+        res.end(data);
         break;
       case "created":
         resp.send(res['shortUrl'])
