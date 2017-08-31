@@ -6,6 +6,8 @@ var http = require("http")
 var time = require("./scripts/tsm.js")
 var getInfo = require("./scripts/rhpm.js")
 var getUrl = require("./scripts/usm.js")
+var isa = require("./scripts/isa.js")
+
 //var circJ = require("circular-json")
 
 var app = express();
@@ -72,12 +74,12 @@ app.get('/ISA', function(req, resp){
 })
 
 app.get('/ISA/imagesearch/*', function(req, resp){
-  var data = getSearchResults(req.params[0])
+  var data = isa.getSearchResults(req.params[0])
   resp.send("ISA Results: " + req.params)
 })
 
 app.get('/ISA/searchhistory/', function(req, resp){
-  var data = getSearchHistory()
+  var data = isa.getSearchHistory()
   resp.send("ISA History")
 })
 
