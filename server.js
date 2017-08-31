@@ -46,8 +46,8 @@ app.get('/USM', function(req, resp){
 })
 
 app.get('/USM/*', function (req, resp){
-  var backURL=req.header('Referer') || '/';
   //console.log(req)
+  var backUrl="https://substantial-screw.glitch.me/USM"
   getUrl(req.params[0], function(res){
     switch (res['type']){
       case "redir":
@@ -57,9 +57,8 @@ app.get('/USM/*', function (req, resp){
         resp.send(res['shortUrl'])
         break;
       case "invalid":  
-        resp.send("<h2>invalid website link. Redirecting...</h2>")
-        resp.redirect(backURL)
-        break
+        resp.send("<h2>invalid website link.</h2><a href="+backUrl+">Click here to go back</a>")
+        break;
       default:
         resp.send(JSON.stringify(res))
         break;
