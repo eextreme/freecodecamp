@@ -74,17 +74,19 @@ app.get('/ISA', function(req, resp){
 })
 
 app.get('/ISA/imagesearch/*', function(req, resp){
-  isa.storeSearchHreq.headers['x-forwarded-for'], req.params[0], new Date())
+  isa.storeSearchHistory(req.headers['x-forwarded-for'].split(",")[0], req.params[0], new Date(), function(res){
+    console.log("Request stored as: "+res)
+  })
   isa.getSearchResults(req.params[0], req.query.offset, function(res){
     resp.send(res)
   })
 })
 
 app.get('/ISA/searchhistory/', function(req, resp){
-  var data = isa.getSearchHistory()
-  resp.send("ISA History")
+  isa.getSearchHistory(function(res){
+    resp.send(res)
+  })
 })
-
 
 app.get('/FMM', function(req, resp){
   resp.sendFile(__dirname + '/views/fmm.html')

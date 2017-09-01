@@ -32,14 +32,13 @@ function getSearchResults(input, offset, callback){
 }
 
 function storeSearchHistory(ipaddress, query, timestamp, callback){
-  console.log(ipaddress +" "+query+" "+timestamp)
+  console.log(ipaddress.split(",")[0] +" "+query+" "+timestamp)
+  
   var MongoClient = require('mongodb').MongoClient
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   
   MongoClient.connect(db_url, function(err, db){
     if (err) throw "connection failed"
-
-    var rand = Math.floor((Math.random() * 100000) + 1);
     
     var qhistory = db.collection('qhistory')
     var entry = {requester:ipaddress, query:query, time:timestamp}
@@ -50,8 +49,18 @@ function storeSearchHistory(ipaddress, query, timestamp, callback){
   })
 }
 
-function getSearchHistory(){
-  console.log("Search History goes here")
+function getSearchHistory(callback){
+  var MongoClient = require('mongodb').MongoClient
+  var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
+  
+  var allinfo =[];
+  MongoClient.connect(db_url, function(err, db){
+    if (err) throw "connection failed"
+    var qhistory = db.collection('qhistory').find().foreach(function(item){
+      allinfo.push(JSON.stringify(item))
+    })
+    return callback(allinfo)   
+  })
 }
 
 module.exports={getSearchResults, getSearchHistory, storeSearchHistory}
