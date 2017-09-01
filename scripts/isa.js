@@ -28,8 +28,24 @@ function getSearchResults(input, offset, callback){
       
       return callback(doc)
     })    
-  })
+  }) 
+}
+
+function storeSearchHistory(ipaddress, query, timestamp){
+  var MongoClient = require('mongodb').MongoClient
+  var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
+  
+  MongoClient.connect(db_url, function(err, db){
+    if (err) throw "connection failed"
+
+    var rand = Math.floor((Math.random() * 100000) + 1);
     
+    var qhistory = db.collection('qhistory')
+    var entry = {requester:ipaddress, query:query, time:timestamp}
+    
+    qhistory.insertOne(entry)
+  })
+  
   
 }
 
@@ -37,4 +53,4 @@ function getSearchHistory(){
   console.log("Search History goes here")
 }
 
-module.exports={getSearchResults, getSearchHistory}
+module.exports={getSearchResults, getSearchHistory, storeSearchHistory}
