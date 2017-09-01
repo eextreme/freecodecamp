@@ -1,12 +1,13 @@
 
 
-function getSearchResults(input){
+function getSearchResults(input, offset, callback){
   var url = "https://www.googleapis.com/customsearch/v1"
   var key = process.env.API_KEY;
-  var engine = process.env.ENGINe_KEY;
+  var engine = process.env.ENGINE_KEY;
   var type ="image";
+  var page = offset*10
   var query = input;
-  var request = url+"?key="+key+"&cx="+engine+"&q="+query+"&searchType="+type;
+  var request = url+"?key="+key+"&cx="+engine+"&q="+query+"&searchType="+type+"&start="+page;
   console.log(request)
   
   var https = require("https")
@@ -18,7 +19,7 @@ function getSearchResults(input){
     
     resp.on('end', function(resp){
       var data = JSON.parse(body)
-      console.log(data)
+      return callback(data)
     })    
   })
     
