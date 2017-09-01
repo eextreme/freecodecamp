@@ -58,12 +58,13 @@ function getSearchHistory(callback){
     if (err) throw "connection failed"
     var cursor=db.collection('qhistory').find({}, function(err, doc){
       if (err) return callback(err)
-      var count =0;
+      var count =0;var size = cursor.length
       
       doc.forEach(function(item){
+        var toDisp ={requester: item.requester, query: item.query, time: item.time}
         count++;
-        allInfo.push(item)
-        if(count>=item.length)
+        allInfo.push(toDisp)
+        if(count>=size)
           return callback(allInfo)
       })
     })

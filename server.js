@@ -82,7 +82,7 @@ app.get('/ISA/imagesearch/*', function(req, resp){
   })
 })
 
-app.get('/ISA/searchhistory/', function(req, resp){
+app.get('/ISA/searchhistory', function(req, resp){
   isa.getSearchHistory(function(res){
     resp.send(res)
   })
