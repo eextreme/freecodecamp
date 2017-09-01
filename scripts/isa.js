@@ -57,9 +57,13 @@ function getSearchHistory(callback){
   MongoClient.connect(db_url, function(err, db){
     if (err) throw "connection failed"
     
-    allinfo.push(db.collection('qhistory').find())
-      
-    return callback(allinfo);
+    var cursor=db.collection('qhistory').find()
+    
+    cursor.forEach(function(item){
+      allinfo.push(item)
+    })
+    
+        
   })
 }
 
