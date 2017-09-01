@@ -20,12 +20,13 @@ function getSearchResults(input, offset, callback){
     });
     
     resp.on('end', function(resp){
+      var doc=[]
       var data = JSON.parse(body)
-      data.item.forEach(function(item){
-        
+      data.items.forEach(function(item){
+        doc.push({imageLink: item.link, originLink: item.displayLink, snippet: item.snippet })
       })
       
-      return callback(data)
+      return callback(doc)
     })    
   })
     
