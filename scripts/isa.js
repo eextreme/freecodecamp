@@ -56,19 +56,16 @@ function getSearchHistory(callback){
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   MongoClient.connect(db_url, function(err, db){
     if (err) throw "connection failed"
-    var cursor=db.collection('qhistory').find({}, function(err, doc){
-      if (err) return callback(err)
-      var count =0;var size = cursor.length
-      
-      doc.forEach(function(item){
+    var cursor=db.collection('qhistory').find()
+
+    console.log(size)
+    var check = new Promise(function(res{
         var toDisp ={requester: item.requester, query: item.query, time: item.time}
         count++;
         allInfo.push(toDisp)
         if(count>=size)
           return callback(allInfo)
       })
-    })
-  })
 }
 
 function getPromise(callback){
