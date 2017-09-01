@@ -2,10 +2,11 @@
 
 function getSearchResults(input){
   var url = "https://www.googleapis.com/customsearch/v1"
-  var key = "AIzaSyDvv4_BfBGozm9DfW2nUrg2wUK5RC4D77Y"
-  var engine = "002023485820325712212:tfka6ekczha"
+  var key = process.env.API_KEY;
+  var engine = process.env.ENGINe_KEY;
+  var type ="image";
   var query = input;
-  var request = url+"?key="+key+"&cx="+engine+"&q="+query;
+  var request = url+"?key="+key+"&cx="+engine+"&q="+query+"&searchType="+type;
   console.log(request)
   
   var https = require("https")
@@ -16,8 +17,8 @@ function getSearchResults(input){
     });
     
     resp.on('end', function(resp){
-      console.log("got data")
-      console.log(body)
+      var data = JSON.parse(body)
+      console.log(data)
     })    
   })
     
