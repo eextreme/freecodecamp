@@ -1,7 +1,8 @@
 
 
 function getSearchResults(input){
-  
+  var url = "https://www.googleapis.com/customsearch/v1"
+  var params = 
 }
 
 function getSearchHistory(){
