@@ -73,9 +73,9 @@ app.get('/ISA', function(req, resp){
   resp.sendFile(__dirname + '/views/isa.html')
 })
 
-app.get('/ISA/imagesearch/:query:offset', function(req, resp){
-  var data = isa.getSearchResults(req.params.query, req.params.offset, function(res){
-    console.log(res)
+app.get('/ISA/imagesearch/*', function(req, resp){
+  var data = isa.getSearchResults(req.params[0], req.query.offset, function(res){
+    resp.send(res)
   })
 })
 
