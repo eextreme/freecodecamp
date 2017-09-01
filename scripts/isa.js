@@ -56,9 +56,9 @@ function getSearchHistory(callback){
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   MongoClient.connect(db_url, function(err, db){
     if (err) throw "connection failed"
-    var cursor=db.collection('qhistory').find().toArray(function(err, arr){
-      if (err return callback(err)
-      return callback(arr)
+    var cursor=db.collection('qhistory').find({},{_id:0, requester:1,query:1, time:1}).toArray(function(err, arr){
+      if (err) return callback(err)
+      else return callback(arr)
     })
   })
 }
