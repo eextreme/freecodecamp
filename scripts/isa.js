@@ -1,4 +1,5 @@
 
+var async = require('async')
 
 function getSearchResults(input, offset, callback){  
   var url = "https://www.googleapis.com/customsearch/v1"
@@ -49,7 +50,7 @@ function storeSearchHistory(ipaddress, query, timestamp, callback){
   })
 }
 
-async function getSearchHistory(callback){
+function getSearchHistory(callback){
   var MongoClient = require('mongodb').MongoClient
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   
@@ -59,10 +60,21 @@ async function getSearchHistory(callback){
     
     var cursor=db.collection('qhistory').find()
     var count=0
-    await cursor.forEach(function(item){
+    cursor.forEach(function(item){
       allinfo.push(item)
     })        
   })
 }
+
+function getCursor(callback){
+  var MongoClient = require('mongodb').MongoClient
+  var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
+  return callback(MongoClient.connect(db_url))
+}
+
+function getAll(callback){
+  return callback(db.collection('qhistory').find())
+}
+
 
 module.exports={getSearchResults, getSearchHistory, storeSearchHistory}
