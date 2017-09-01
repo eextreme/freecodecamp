@@ -56,10 +56,10 @@ function getSearchHistory(callback){
   var allinfo =[];
   MongoClient.connect(db_url, function(err, db){
     if (err) throw "connection failed"
-    var qhistory = db.collection('qhistory').find().foreach(function(item){
-      allinfo.push(JSON.stringify(item))
-    })
-    return callback(allinfo)   
+    
+    allinfo.push(db.collection('qhistory').find())
+      
+    return callback(allinfo);
   })
 }
 
