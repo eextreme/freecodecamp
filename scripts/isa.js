@@ -49,7 +49,7 @@ function storeSearchHistory(ipaddress, query, timestamp, callback){
   })
 }
 
-function getSearchHistory(callback){
+async function getSearchHistory(callback){
   var MongoClient = require('mongodb').MongoClient
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   
@@ -58,12 +58,10 @@ function getSearchHistory(callback){
     if (err) throw "connection failed"
     
     var cursor=db.collection('qhistory').find()
-    
-    cursor.forEach(function(item){
+    var count=0
+    await cursor.forEach(function(item){
       allinfo.push(item)
-    })
-    
-        
+    })        
   })
 }
 
