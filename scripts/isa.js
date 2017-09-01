@@ -6,12 +6,21 @@ function getSearchResults(input){
   var engine = "002023485820325712212:tfka6ekczha"
   var query = input;
   var request = url+"?key="+key+"&cx="+engine+"&q="+query;
-  console.log(rq)
+  console.log(request)
   
   var https = require("https")
-  https.get(request, function(data){
-  console.log(data)
+  https.get(request, function(resp){
+    var body = '';
+    resp.on('data', function(d) {
+      body += d;
+    });
+    
+    resp.on('end', function(resp){
+      console.log("got data")
+      console.log(body)
+    })    
   })
+    
   
 }
 
