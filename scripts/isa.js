@@ -5,10 +5,12 @@ function getSearchResults(input){
   var key = "AIzaSyDvv4_BfBGozm9DfW2nUrg2wUK5RC4D77Y"
   var engine = "002023485820325712212:tfka6ekczha"
   var query = input;
+  var request = url+"?key="+key+"&cx="+engine+"&q="+query;
+  console.log(rq)
   
-  var http = require("http")
-  http.get(url+"?key="+key+"&cx="+engine+"&q="+query, function(data){
-  console.log(JSON.stringify(data))
+  var https = require("https")
+  https.get(request, function(data){
+  console.log(data)
   })
   
 }
