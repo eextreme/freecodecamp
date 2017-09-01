@@ -31,7 +31,8 @@ function getSearchResults(input, offset, callback){
   }) 
 }
 
-function storeSearchHistory(ipaddress, query, timestamp){
+function storeSearchHistory(ipaddress, query, timestamp, callback){
+  console.log(ipaddress +" "+query+" "+timestamp)
   var MongoClient = require('mongodb').MongoClient
   var db_url = "mongodb://tester:tester@ds149763.mlab.com:49763/eextreme_db"
   
@@ -44,9 +45,9 @@ function storeSearchHistory(ipaddress, query, timestamp){
     var entry = {requester:ipaddress, query:query, time:timestamp}
     
     qhistory.insertOne(entry)
+    db.close()
+    return callback(entry)
   })
-  
-  
 }
 
 function getSearchHistory(){

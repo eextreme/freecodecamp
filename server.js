@@ -74,6 +74,7 @@ app.get('/ISA', function(req, resp){
 })
 
 app.get('/ISA/imagesearch/*', function(req, resp){
+  isa.storeSearchHreq.headers['x-forwarded-for'], req.params[0], new Date())
   isa.getSearchResults(req.params[0], req.query.offset, function(res){
     resp.send(res)
   })
