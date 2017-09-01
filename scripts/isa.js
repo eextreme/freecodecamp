@@ -5,7 +5,7 @@ function getSearchResults(input, offset, callback){
   var key = process.env.API_KEY;
   var engine = process.env.ENGINE_KEY;
   var type ="image";
-  var page = if(offset) return offset*10 else return 0;
+  var page = offset*10 || 1;
   var query = input;
   var request = url+"?key="+key+"&cx="+engine+"&q="+query+"&searchType="+type+"&start="+page;
   
@@ -21,6 +21,10 @@ function getSearchResults(input, offset, callback){
     
     resp.on('end', function(resp){
       var data = JSON.parse(body)
+      data.item.forEach(function(item){
+        
+      })
+      
       return callback(data)
     })    
   })
