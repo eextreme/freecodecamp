@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Site="deadofnight.org" PortNumber="5000" StackChar="59" SpeedWalkChar="46" UglyMode="true" WrapSize="80" TabSize="4" WordWrap="true" WindowWrap="true" AllowNumpadWalk="true" EchoCommands="true" ShowClock="true" MaximiseOnStartup="true" ShowHistorySelect="false" FlashOnAllReceived="true" AllowSplit="true" AutoComplete="false" FilteredHistory="false" IgnoreTrailingSelection="false" ShowCharacterSelection="false" AddTimeStamps="false" DontConnectOnStartup="false" DontCheckVersionOnStartup="false" AllowMSPWithoutNegotiation="false">
+  <FallbackPorts>
+    <int>4000</int>
+    <int>23</int>
+  </FallbackPorts>
+  <EchoFilter><![CDATA[]]></EchoFilter>
+  <FGColor R="224" G="224" B="224" />
+  <BGColor R="0" G="0" B="0" />
+  <Font FontName="Lucida Console" FontSize="9.75" />
+  <InputFilterSettings ImplicitFrontMatch="false" ImplicitTrailingMatch="false">
+    <Filters />
+  </InputFilterSettings>
+  <OutputFilterSettings ImplicitFrontMatch="true" ImplicitTrailingMatch="true">
+    <Filters>
+      <FilterSetting Name="blind" Id="f035af99-c40d-44f4-b72b-522382dadd59" Enabled="true" AllowPatial="false" StopIfMatch="false" SimplifiedRegexp="true" CaseSensitive="false" Filtered="false" Type="Trigger">
+        <Regex><![CDATA[rubs the dirt from his eyes]]></Regex>
+        <Method><![CDATA[dirt]]></Method>
+      </FilterSetting>
+      <FilterSetting Name="blindp2" Id="6d7cbdce-e4ad-40e0-a764-a28d2e6aee08" Enabled="true" AllowPatial="false" StopIfMatch="false" SimplifiedRegexp="true" CaseSensitive="false" Filtered="false" Type="Trigger">
+        <Regex><![CDATA[ineffectually toss dirt around]]></Regex>
+        <Method><![CDATA[dirt]]></Method>
+      </FilterSetting>
+      <FilterSetting Name="tripfail" Id="c7641e5b-e20b-4e51-ac36-52a8f1443e19" Enabled="true" AllowPatial="false" StopIfMatch="false" SimplifiedRegexp="true" CaseSensitive="false" Filtered="false" Type="Trigger">
+        <Regex><![CDATA[you trip yourself up and fall to the ground]]></Regex>
+        <Method><![CDATA[stand
+trip]]></Method>
+      </FilterSetting>
+      <FilterSetting Name="GroupPrompt" Id="31fe06cf-bef2-4133-b7ac-e6e6f8991164" Enabled="false" AllowPatial="false" StopIfMatch="false" SimplifiedRegexp="true" CaseSensitive="false" Filtered="false" Type="Trigger">
+        <Regex><![CDATA[hit to your]]></Regex>
+        <Method><![CDATA[]]></Method>
+      </FilterSetting>
+    </Filters>
+  </OutputFilterSettings>
+  <ShortcutSettings>
+    <Shortcuts />
+  </ShortcutSettings>
+  <ButtonSettings>
+    <Buttons>
+      <ButtonSetting Name="shock_G" BypassAliases="false">
+        <Action><![CDATA[csg]]></Action>
+      </ButtonSetting>
+      <ButtonSetting Name="chill_t" BypassAliases="false">
+        <Action><![CDATA[ct]]></Action>
+      </ButtonSetting>
+      <ButtonSetting Name="heal" BypassAliases="false">
+        <Action><![CDATA[cl]]></Action>
+      </ButtonSetting>
+      <ButtonSetting Name="dirt" BypassAliases="false">
+        <Action><![CDATA[dirt]]></Action>
+      </ButtonSetting>
+      <ButtonSetting Name="buff _all" BypassAliases="false">
+        <Action><![CDATA[caa
+csh]]></Action>
+      </ButtonSetting>
+    </Buttons>
+  </ButtonSettings>
+  <MonitorSettings>
+    <Monitors />
+  </MonitorSettings>
+  <FilterGroupSettings Enabled="false">
+    <FilterGroups />
+  </FilterGroupSettings>
+  <CharacterSettings>
+    <Characters />
+  </CharacterSettings>
+  <ColorSettings>
+    <Red R="255" G="0" B="0" />
+    <Green R="0" G="128" B="0" />
+    <Blue R="0" G="0" B="255" />
+    <Yellow R="255" G="255" B="0" />
+    <Cyan R="0" G="255" B="255" />
+    <Magenta R="255" G="0" B="255" />
+    <LightRed R="255" G="182" B="193" />
+    <LightGreen R="144" G="238" B="144" />
+    <LightBlue R="173" G="216" B="230" />
+    <LightYellow R="255" G="255" B="224" />
+    <LightCyan R="224" G="255" B="255" />
+    <LightMagenta R="255" G="160" B="122" />
+    <DarkRed R="139" G="0" B="0" />
+    <DarkGreen R="0" G="100" B="0" />
+    <DarkBlue R="0" G="0" B="139" />
+    <DarkYellow R="184" G="134" B="11" />
+    <DarkCyan R="0" G="139" B="139" />
+    <DarkMagenta R="139" G="0" B="139" />
+    <White R="255" G="255" B="255" />
+    <DarkWhite R="211" G="211" B="211" />
+    <LightWhite R="255" G="255" B="255" />
+    <Black R="0" G="0" B="0" />
+    <DarkBlack R="0" G="0" B="0" />
+    <LightBlack R="169" G="169" B="169" />
+  </ColorSettings>
+  <KeypadSettings>
+    <Key8>north</Key8>
+    <Key4>west</Key4>
+    <Key2>south</Key2>
+    <Key6>east</Key6>
+    <Key9>up</Key9>
+    <Key3>down</Key3>
+    <Key1 />
+    <Key7 />
+    <Key5 />
+    <Key0 />
+  </KeypadSettings>
+  <FilterStateSettings>
+    <Strings />
+    <Doubles />
+    <Ints />
+    <DoubleArrays />
+    <IntArrays />
+    <DoubleLists />
+    <IntLists />
+  </FilterStateSettings>
+  <WindowPrefs />
+</Settings>
