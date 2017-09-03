@@ -98,7 +98,8 @@ var upload = multer({ dest: 'uploads/' })
 
 
 app.post('/FMM/upload', upload.single('upload'), function (req, res, next) {
-  res.send(req.body)
+  console.log(req.file)
+  res.send(JSON.parse({req.file.size};
   // req.file is the `avatar` file 
   // req.body will hold the text fields, if there were any 
 })
